@@ -4,11 +4,9 @@ export class BarcodeScanner extends EventTarget {
 
         options = Object.assign({
             timeOut: 130,
-            characterCount: 13
         }, options);
 
         this.timeOut = options.timeOut;
-        this.characterCount = options.characterCount;
         this.timer = Date.now();
         this.capture = '';
         this.target = new EventTarget();
@@ -30,9 +28,7 @@ export class BarcodeScanner extends EventTarget {
             this.capture += e.key
 
             // It seems we managed to get enough characters within the time out, send scan!
-            if (this.capture.length === this.characterCount) {
                 this.dispatchScanEvent();
-            }
         }
     }
 
